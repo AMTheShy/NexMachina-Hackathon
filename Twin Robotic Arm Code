@@ -1,0 +1,31 @@
+#include <Adafruit_PWMServoDriver.h>
+
+#define MIN_PULSE_WIDTH       650
+#define MAX_PULSE_WIDTH       2350
+#define FREQUENCY             50
+
+Adafruit_PWMServoDriver pwmDriver = Adafruit_PWMServoDriver();
+
+int wristPotPin = A3;
+int elbowPotPin = A2;
+int shoulderPotPin = A1;
+int basePotPin = A0;
+
+int gripperServo = 11;
+int wristServo = 12;
+int elbowServo = 13;
+int shoulderServo = 14;
+int baseServo = 15;
+
+void setup() 
+{
+  delay(5000);                          
+  
+  pwmDriver.begin();
+  pwmDriver.setPWMFreq(FREQUENCY);
+  pwmDriver.setPWM(gripperServo, 0, 90);                 
+  
+  pinMode(13, INPUT_PULLUP);
+  
+  Serial.begin(9600);
+}
